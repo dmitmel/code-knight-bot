@@ -5,7 +5,7 @@ const secrets: { token: string } = require('../secrets.json');
 
 const client = new discord.Client();
 
-const CRUSSCODE_GUILD_ID = '500980710870614019';
+const KDBOT_MESSAGE_CLEANUP_GUILD_IDS = new Set(['382339402338402315', '500980710870614019']);
 const KDBOT_USER_ID = '414925323197612032';
 const BLOCKED_MESSAGE_PATTERNS = [
   /^<@!?\d+>, I'm not playing anything!$/,
@@ -32,7 +32,7 @@ client.on('ready', () => {
 client.on('message', (msg: discord.Message) => {
   if (
     msg.channel instanceof discord.TextChannel &&
-    msg.channel.guild.id === CRUSSCODE_GUILD_ID &&
+    KDBOT_MESSAGE_CLEANUP_GUILD_IDS.has(msg.channel.guild.id) &&
     msg.author.id === KDBOT_USER_ID &&
     BLOCKED_MESSAGE_PATTERNS.some((p) => p.test(msg.content))
   ) {
