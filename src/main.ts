@@ -11,6 +11,7 @@ const BLOCKED_MESSAGE_PATTERNS = [
   /^<@!?\d+>, I'm not playing anything!$/,
   /^The current TTS command is not done!$/,
   /^You're not in a voice channel!$/,
+  /^<@!?\d+>, I'm not in a voice channel!$/,
 ];
 
 const MENTION_RESPONSE_PROBABILITY = 0.5;
@@ -39,10 +40,7 @@ client.on('message', (msg: discord.Message) => {
     msg.delete({ timeout: 2000, reason: 'KDBot spam cleanup' });
   }
 
-  if (
-    msg.mentions.users.has(client.user!.id) &&
-    Math.random() < MENTION_RESPONSE_PROBABILITY
-  ) {
+  if (msg.mentions.users.has(client.user!.id) && Math.random() < MENTION_RESPONSE_PROBABILITY) {
     msg.channel.send(MENTION_RESPONSES.join('\n'));
   }
 });
