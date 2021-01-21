@@ -5,7 +5,11 @@ const secrets: { token: string } = require('../secrets.json');
 
 const client = new discord.Client();
 
-const KDBOT_MESSAGE_CLEANUP_GUILD_IDS = new Set(['382339402338402315', '500980710870614019']);
+const KDBOT_MESSAGE_CLEANUP_GUILD_IDS = new Set([
+  '382339402338402315',
+  '500980710870614019',
+  '785196930523332618',
+]);
 const KDBOT_USER_ID = '414925323197612032';
 const BLOCKED_MESSAGE_PATTERNS = [
   /^<@!?\d+>, I'm not playing anything!$/,
