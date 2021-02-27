@@ -10,7 +10,7 @@ const KDBOT_MESSAGE_CLEANUP_GUILD_IDS = new Set([
   '500980710870614019',
   '785196930523332618',
 ]);
-const KDBOT_USER_ID = '414925323197612032';
+const KDBOT_USER_IDS = new Set(['414925323197612032', '708971789446938664']);
 const BLOCKED_MESSAGE_PATTERNS = [
   /^<@!?\d+>, I'm not playing anything!$/,
   /^The current TTS command is not done!$/,
@@ -38,7 +38,7 @@ client.on('message', (msg: discord.Message) => {
   if (
     msg.channel instanceof discord.TextChannel &&
     KDBOT_MESSAGE_CLEANUP_GUILD_IDS.has(msg.channel.guild.id) &&
-    msg.author.id === KDBOT_USER_ID &&
+    KDBOT_USER_IDS.has(msg.author.id) &&
     BLOCKED_MESSAGE_PATTERNS.some((p) => p.test(msg.content))
   ) {
     msg.delete({ timeout: 2000, reason: 'KDBot spam cleanup' });
