@@ -1,7 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "\"$NODE\" dist/main.js"
+    "build": "tsc --build",
+    "watch": "tsc --watch",
+    "start": "node dist/main.js"
   },
   "dependencies": {
     "discord.js": "^12.4.0"
